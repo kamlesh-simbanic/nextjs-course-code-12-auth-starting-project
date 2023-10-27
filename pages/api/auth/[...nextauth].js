@@ -1,5 +1,5 @@
 import NextAuth from "next-auth";
-import Providers from "next-auth/providers";
+import CredentialsProvider from "next-auth/providers/credentials";
 import { UserModel, client } from "../../../lib/db";
 import { verifyPassword } from "../../../lib/auth";
 export default NextAuth({
@@ -7,11 +7,12 @@ export default NextAuth({
     jwt: true,
   },
   providers: [
-    Providers.Credentials({
+    CredentialsProvider({
+      name: "Credentials",
       async authorize(credential) {
-        const user = await UserModel.findOne({ email: email });
+        const user = await UserModel.findOne({ email: credential.email });
 
-        if (existingUser) {
+        if (!user) {
           client.close();
           throw new Error("No User Found");
         }
