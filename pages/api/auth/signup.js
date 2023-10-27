@@ -20,7 +20,6 @@ async function handler(req, res) {
     return;
   }
   console.log("email", email);
-  //   const client = await connectToDatabase();
   const existingUser = await UserModel.findOne({ email: email });
 
   if (existingUser) {
