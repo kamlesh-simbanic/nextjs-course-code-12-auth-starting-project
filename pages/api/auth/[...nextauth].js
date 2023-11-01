@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { UserModel, client } from "../../../lib/db";
+import { client } from "../../../lib/db";
 import { verifyPassword } from "../../../lib/auth";
 export default NextAuth({
   session: {
@@ -10,6 +10,10 @@ export default NextAuth({
     CredentialsProvider({
       name: "Credentials",
       async authorize(credential) {
+        const db = client.db();
+
+        const UserModel = db.collection("user");
+
         const user = await UserModel.findOne({ email: credential.email });
 
         if (!user) {
