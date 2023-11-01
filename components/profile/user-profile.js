@@ -5,21 +5,21 @@ import { useEffect, useState } from "react";
 
 function UserProfile() {
   // Redirect away if NOT auth
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    getSession().then((session) => {
-      if (!session) {
-        window.location.href = "/auth";
-      } else {
-        setIsLoading(false);
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   getSession().then((session) => {
+  //     if (!session) {
+  //       window.location.href = "/auth";
+  //     } else {
+  //       setIsLoading(false);
+  //     }
+  //   });
+  // }, []);
 
-  if (isLoading) {
-    return <p className={classes.profile}>Loading...</p>;
-  }
+  // if (isLoading) {
+  //   return <p className={classes.profile}>Loading...</p>;
+  // }
 
   return (
     <section className={classes.profile}>
