@@ -6,8 +6,9 @@ async function handler(req, res) {
   if (req.method !== "PATCH") {
     return;
   }
+  console.log("req", req);
 
-  const session = await getSession({ req: req });
+  const session = await getSession({ req });
 
   console.log("session", session);
   if (!session) {
